@@ -1,0 +1,105 @@
+<html>
+	<head>
+		<title>ACodeEditor</title>
+		<script src="../codepress/codepress.js" type="text/javascript"></script>
+		
+	<link rel="stylesheet" href="../mocha/css/mocha.css" type="text/css" />	
+	<style type="text/css">
+	a {
+	color: #e60;
+	text-decoration: none;
+	cursor: pointer;
+	}
+
+	a:hover {
+	text-decoration: none;
+	}
+	</style>
+	</head>
+	<body>
+	<div id="mochaDesktop">
+		<div id="mochaDesktopHeader">
+			<div id="mochaDesktopTitlebar">
+				<h1>ACodeEditor<span class="version"> v 0.3</span></h1>
+			</div>
+	
+<div id="mochaDesktopNavbar">
+<ul>
+	
+	<script type="text/javascript">
+		function changeLang(f){			
+			switch(f){
+				case 'php':						
+					code.edit('','php');						
+				break;
+				case 'java':						
+					code.edit('','java');						
+				break;
+				case 'javascript':						
+					code.edit('','javascript');						
+				break;
+				case 'sql':						
+					code.edit('','sql');						
+				break;
+				case 'html':						
+					code.edit('','html');						
+				break;
+			}
+		}
+		
+		function changeView(){
+			code.toggleLineNumbers();		
+		}
+		function clearText(){
+			code.setCode('');
+		}
+		function save(){
+			window.open('save.php?code='+code.getCode());
+		}
+	</script>
+	<li>
+		<a class="returnFalse" href="">File</a>	
+		<ul>
+			<li>
+				<a id="new" href="#" onclick="clearText()">New</a>
+			</li>
+			<li>
+				<a id="save" href="#" onclick="save()">Save</a>
+			</li>
+		</ul>
+	</li>
+	<li>
+	<a class="returnFalse" href="">View</a>	
+		<ul>
+			<li><a id="Toggle_Line_no" href="#" onclick="changeView()">Toggle Line no</a></li>
+				
+		</ul>
+	</li>
+	<li>
+		<a class="returnFalse" href="">Language</a>
+			<ul>
+				<li><a href="#" onclick="changeLang('php');">PHP</a></li>
+				<li><a href="#" onclick="changeLang('java');">Java</a></li>
+				<li><a href="#" onclick="changeLang('sql');">SQL</a></li>
+				<li><a href="#" onclick="changeLang('html');">HTML</a></li>							
+				<li><a href="#" onclick="changeLang('javascript');">Javascript</a></li>							
+			</ul>
+			
+	</li>
+	<li>
+			<a class="returnFalse" href="">Help</a>
+			<ul>
+				<li style="padding: 1px 9px;" onclick="alert('ACodeEditor\nV 0.3 (1/05/08)\n(c)copyright GNU GPL3');">About</li>				
+			</ul>
+			
+	</li>
+</div><!-- mochaDesktopNavbar end -->
+
+</div><!-- mochaDesktopHeader end -->
+		<!--<form name="editorForm" action="save.php" method="post" >-->
+			<textarea id="code" rows="10" col="20" class="codepress php" style="width:900px;height:500px;" >
+   
+</textarea>	
+		
+	</body>
+</html>
