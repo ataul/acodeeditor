@@ -5,7 +5,8 @@ Ext.onReady(function(){
 		{
 			text: 'New',
 			handler: function(){
-				
+				document.getElementById('editor').innerHTML = '<textarea id="code" rows="10" col="20" class="codepress php" style="width:900px;height:500px;">';	
+				CodePress.run();
 			}
 		}]
 	});
@@ -15,25 +16,25 @@ Ext.onReady(function(){
 			{
 				text: 'PHP',
 				handler: function(){
-					
+					code.edit('','php');	
 				}
 			},
 			{
 				text: 'Java',
 				handler: function(){
-					
+					code.edit('','java');
 				}
 			},
 			{
 				text: 'Javascript',
 				handler: function(){
-					
+					code.edit('','javascript');
 				}
 			},
 			{
 				text: 'HTML',
 				handler: function(){
-					
+					code.edit('','html');
 				}
 			}
 		]
@@ -44,7 +45,7 @@ Ext.onReady(function(){
 		{
 			text: 'Toggle line no',
 			handler: function(){
-				
+				code.toggleLineNumbers();			
 			}
 		}]
 	});
@@ -54,7 +55,7 @@ Ext.onReady(function(){
 		{
 			text: 'About',
 			handler: function(){
-				alert('ACodeEditor v0.4');
+				Ext.Msg.alert('ACodeEditor v0.4');
 			}
 		}]
 	});
@@ -130,8 +131,8 @@ Ext.onReady(function(){
                     minSize: 175,
                     maxSize: 400,
                     //collapsible: true,
-                    margins:'0 0 0 5'
-                    
+                    margins:'0 0 0 5',
+					contentEl:'editor'                 
                     }
 					
 				]             

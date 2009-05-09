@@ -6,6 +6,7 @@
 		<script type="text/javascript" src="../resources/js/ext-base.js" ></script>
 		<script type="text/javascript" src="../resources/js/ext-all.js" ></script>		
 		<script type="text/javascript" src="../resources/js/editable_tree_lib.js"></script>
+		<script src="../codepress/codepress.js" type="text/javascript"></script>
 		<script type="text/javascript">
 		<?
 			/*
@@ -15,7 +16,7 @@
 			*/
 		?>
 		</script>
-		<script type="text/javascript" src="../resources/js/admin_panel.js" ></script>
+		<script type="text/javascript" src="../resources/js/main.js" ></script>
 		
 		
 		
@@ -32,8 +33,9 @@
         
 	</div>	
   <div id="center1">
-    <div id="admin_edit_form"></div>    
-
+	<div id="editor">
+		
+	</div>
   </div>
   
   <div id="south">
