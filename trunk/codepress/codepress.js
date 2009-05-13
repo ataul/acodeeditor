@@ -133,6 +133,6 @@ CodePress.run = function() {
 		} 
 	}
 }
-
-if(window.attachEvent) window.attachEvent('onload',CodePress.run);
-else window.addEventListener('DOMContentLoaded',CodePress.run,false);
+//Removed those lines for ExtJS version
+//if(window.attachEvent) window.attachEvent('onload',CodePress.run);
+//else window.addEventListener('DOMContentLoaded',CodePress.run,false);
