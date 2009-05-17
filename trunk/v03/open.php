@@ -8,26 +8,6 @@
 //======================================================================
 // License :
 //		License GNU/LGPL
-//
-// Presentation :
-//		A tool use to browse, search, download files 
-//		and folder from comp/server.
-//
-// Warning :
-//		This program is non commercial and non professional work.
-//		This program is not 100% bugs free and
-//		it is working fine at this moment.
-//  	Any damages cause by this software is not the author resposible.
-//  	Use at your own risk!
-//
-// Contribution :
-//		If you want to contribute to the development this projects,
-//		please visit http://zorex.info and click on donation.
-//
-//======================================================================
-//		PHP Explorer v1.2 11/08/2006 03:10 a.m.
-//======================================================================
-
 
 //======================================================================
 //				Variables & Constants (Do not change)
@@ -38,6 +18,10 @@
 //======================================================================
 //						Parse all html tags
 //======================================================================
+
+define('ICON_PATH','../ext_ico/');
+define('SYSIMG_PATH','../sysimg/');
+
 function parse_tags($str) {
 	$trans = array( "&" => "&amp;", '"' => "&quot;", "<" => "&lt;", ">" => "&gt;" );
 	
@@ -143,7 +127,7 @@ function loop_dir($dir) {
 			
 			if( $file == "." ) {
 				$refresh = "<tr bgcolor=\"#F5F5F5\">
-				<td align=\"left\"><img src=\"./sysimg/refresh.png\" border=\"0\" alt=\"\" />
+				<td align=\"left\"><img src=\"".SYSIMG_PATH."refresh.png\" border=\"0\" alt=\"\" />
 				<a href=\"$self?dir=$dir\">Refresh</a></td>
 				<td align=\"center\"></td>
 				<td align=\"left\"></td>
@@ -152,7 +136,7 @@ function loop_dir($dir) {
 			elseif( $file == ".." ) {
 				$up_lvl = str_replace( "\\", "/", dirname($dir . "..") );
 				$dir_up = "<tr bgcolor=\"#FFFFFF\">
-				<td align=\"left\"><img src=\"./sysimg/back.png\" border=\"0\" alt=\"\" />
+				<td align=\"left\"><img src=\"".SYSIMG_PATH."back.png\" border=\"0\" alt=\"\" />
 				<a href=\"$self?dir=$up_lvl\">Up one level</a></td>
 				<td align=\"center\"></td>
 				<td align=\"left\"></td>
@@ -177,7 +161,7 @@ function loop_dir($dir) {
 						if( stristr($file, $fname) ) { //search for the dir
 							
 							//store all dirs in array
-							$all_dir[] .= "<td align=\"left\"><img src=\"./ext_ico/folder.png\" border=\"0\" alt=\"\" />
+							$all_dir[] .= "<td align=\"left\"><img src=\"".ICON_PATH."folder.png\" border=\"0\" alt=\"\" />
 							<a href=\"$self?dir=$full_path\" title=\"$full_path\">" . $file . "</a></td>
 							<td align=\"center\">-</td>
 							<td align=\"center\">$perm</td>
@@ -185,7 +169,7 @@ function loop_dir($dir) {
 						}
 						elseif( stristr($file, $fname) ) { //search for the dir
 							//store all dirs in array
-							$all_dir[] .= "<td align=\"left\"><img src=\"./ext_ico/folder.png\" border=\"0\" alt=\"\" />
+							$all_dir[] .= "<td align=\"left\"><img src=\"".ICON_PATH."folder.png\" border=\"0\" alt=\"\" />
 							<a href=\"$self?dir=$full_path\" title=\"$full_path\">" . $file . "</a></td>
 							<td align=\"center\">-</td>
 							<td align=\"center\">$perm</td>
@@ -195,7 +179,7 @@ function loop_dir($dir) {
 					elseif( empty($content) ) { //not searching, display them all
 					
 						//store all dirs in array
-						$all_dir[] .= "<td align=\"left\"><img src=\"./ext_ico/folder.png\" border=\"0\" alt=\"\" />
+						$all_dir[] .= "<td align=\"left\"><img src=\"".ICON_PATH."folder.png\" border=\"0\" alt=\"\" />
 						<a href=\"$self?dir=$full_path\" title=\"$full_path\">" . $file . "</a></td>
 						<td align=\"center\">-</td>
 						<td align=\"center\">$perm</td>
@@ -204,7 +188,7 @@ function loop_dir($dir) {
 					
 				}
 				else { //the dir cannot be read
-					$unread_dir[] .= "<td align=\"left\"><img src=\"./ext_ico/folder2.png\" border=\"0\" alt=\"\" /> " 
+					$unread_dir[] .= "<td align=\"left\"><img src=\"".ICON_PATH."folder2.png\" border=\"0\" alt=\"\" /> " 
 					. $file . "</td>
 					<td align=\"center\">-</td>
 					<td align=\"center\">$perm</td>
@@ -239,19 +223,19 @@ function loop_dir($dir) {
 				$ext = substr(strrchr($file, "."), 1);
 				
 				//icon for normal readable file
-				if( file_exists( "./ext_ico/" . $ext . ".png") ) {
-					$icon_normal = "./ext_ico/" . $ext . ".png";
+				if( file_exists( "".ICON_PATH."" . $ext . ".png") ) {
+					$icon_normal = "".ICON_PATH."" . $ext . ".png";
 				}
 				else { //set as unknown filetype icon
-					$icon_normal = "./ext_ico/file.png";
+					$icon_normal = "".ICON_PATH."file.png";
 				}
 				
 				//icon for unreadable file
-				if( file_exists( "./ext_ico/" . $ext . "2.png") ) {
-					$icon_unview = "./ext_ico/" . $ext . "2.png";
+				if( file_exists( "".ICON_PATH."" . $ext . "2.png") ) {
+					$icon_unview = "".ICON_PATH."" . $ext . "2.png";
 				}
 				else { //set as unknown filetype icon
-					$icon_unview = "./ext_ico/file2.png";
+					$icon_unview = "".ICON_PATH."file2.png";
 				}
 				
 				//check if the file can be read
@@ -370,8 +354,10 @@ loop_dir($dir);
 
 <style type="text/css">
 <!--
-body {
+#open-dialog{
 font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+td{
 font-size:11px;
 }
 form {
@@ -388,7 +374,7 @@ h2 {
 a:visited,
 a:link {
 	color						: #002F62;
-	text-decoration				: none;
+	text-decoration				: none;	
 }
 a:hover {
 	color						: #999999;
@@ -428,7 +414,7 @@ function open_close(id, oo, cc) {
 	}
 }
 </script>
-
+<div id="open-dialog">
 <table align="center" border="0" style="border:1px solid #999999; background-color:#F5F5F5;" cellpadding="1" cellspacing="3">
 	<tr><td align="left" valign="top">	
 		
@@ -436,12 +422,12 @@ function open_close(id, oo, cc) {
 		<form action="<?php echo $self; ?>" method="get">
 		Path in: <input type="text" name="dir" value="<?php echo $dir; ?>" size="94" maxlength="256" 
 		onfocus="select()" class="input" />
-		&nbsp;<input type="image" src="./sysimg/go.png" style="vertical-align:bottom;" title="Type an address and go." />
+		&nbsp;<input type="image" src="<?echo SYSIMG_PATH;?>go.png" style="vertical-align:bottom;" title="Type an address and go." />
 		</form>		
 	<!--The search area!-->
 		
 		
-		<input type="image" src="./sysimg/back" onclick="this.value=open_close('search_box','&or;','&and;');" 
+		<input type="image" src="<?echo SYSIMG_PATH;?>back" onclick="this.value=open_close('search_box','&or;','&and;');" 
 		value="<?php echo $value2; ?>" class="but1" /><br />
 		
 		<div id="search_box" style="display:<?php echo $display2; ?>;border:1px solid #999999;padding:3px;margin:8px 0 0 0;">
@@ -478,15 +464,7 @@ function open_close(id, oo, cc) {
 		</table>
 	</td></tr>
 </table>
-<div style="display: none">
-	<br /><br />
-	<hr style="width:400px;" />
-	<center><font class="info">
-	Copyright &copy; <?php echo date("Y"); ?> <a href="http://zorex.info">Zorex</a> - All rights reserved
-	</font></center>
 </div>
-</body>
-</html>
 <?php
 if( !empty($script) ) {
 	//executing script
