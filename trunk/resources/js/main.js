@@ -1,4 +1,36 @@
+function openDialog(){
+	var win = new Ext.Window({
+		width: 640,
+		height: 400,
+		items: {
+			html:'<iframe border="0" frameborder="0" scrolling="disabled" src="open.php" width="100%" height="100%" align="center"> </iframe>'
+		},
+		buttons: [{
+                    text:'Open',
+                    disabled:true
+                },{
+                    text: 'Cancel',
+                    handler: function(){
+                        win.hide();
+                    }
+                }]
+		
+	});	
+	win.show();	
+}
+
+
 Ext.onReady(function(){
+
+	new Ext.KeyMap(Ext.get(document), {
+			key:'o',
+			ctrl:true,
+			alt:true,
+			fn:function(e){
+			openDialog();
+		},
+		stopEvent:true
+	});
 
 	var Filemenu = new Ext.menu.Menu({
 		items: [
@@ -7,6 +39,11 @@ Ext.onReady(function(){
 			handler: function(){
 				document.getElementById('editor').innerHTML = '<textarea id="code" rows="10" col="20" class="codepress php" style="width:900px;height:500px;">';	
 				CodePress.run();
+			}
+		},{
+			text: 'Open',
+			handler:function(){
+				openDialog();
 			}
 		}]
 	});
