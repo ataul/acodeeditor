@@ -1,0 +1,20 @@
+<script src="https://bespin.mozilla.com/embed.js"></script>
+ 
+<script>
+    var _editorComponent;
+ 
+    // Loads and configures the objects that the editor needs
+    
+	function start(){
+        _editorComponent = new bespin.editor.Component('editor', {
+            syntax: "js",
+            loadfromdiv: true
+        });
+		_editorComponent.set("syntaxengine", "codemirror");
+	}
+    
+</script>
+ 
+<div id="editor" style="height: 300px; border: 10px solid #ddd; -moz-border-radius: 10px; -webkit-border-radius: 10px;">var foo = "whee";
+</div>
+<button onclick="start()">Start</button>
